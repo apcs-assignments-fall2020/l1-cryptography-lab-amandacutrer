@@ -4,10 +4,10 @@ public class Caesar {
     public static String encryptCaesar(String message) {
     char ch;
     String newMessage = "";
-    for (int i = 0; i < message.length(); i++){
-        char check = message.charAt(i);
-        if (!(check > 'A' && check < 'Z')){
-            ch = (char)(check);
+    for (int i = 0; i < message.length(); i++){ 
+        if (message.charAt(i) < 'A' || message.charAt(i) > 'Z'){
+            newMessage = newMessage + message.charAt(i);
+            continue;
         }
         char newChar = (char)(message.charAt(i) + 3);
         if (newChar > 'Z'){
@@ -26,13 +26,19 @@ public class Caesar {
         char ch;
     String newMessage = "";
     for (int i = 0; i < message.length(); i++){
-        if (message.charAt(i - 3) < 'A'){
+        if (message.charAt(i) < 'A' || message.charAt(i) > 'Z'){
+            newMessage = newMessage + message.charAt(i);
+            continue;
+        }
+        else if (message.charAt(i) > 'A' && message.charAt(i) < 'Z'){
+            if (message.charAt(i - 3) < 'A'){
             ch = (char)(message.charAt(i) + 23);
         }
         else {
             ch = (char)(message.charAt(i) - 3);
         }
-         newMessage = newMessage + ch;
+        newMessage = newMessage + ch;
+        }
     }
         return newMessage;
     }
