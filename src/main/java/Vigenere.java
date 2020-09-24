@@ -2,13 +2,51 @@ import java.util.Scanner;
 
 public class Vigenere {
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String newMessage = "";
+        for (int i = 0; i < message.length() - 1; i++){
+            char currentChar = message.charAt(i);
+            char iKey = (char)(key.charAt(i) - 65);
+            
+        if (currentChar >= 'A' && currentChar <= 'Z'){
+                newMessage = newMessage + (char)((currentChar - 65 + iKey)%26+65);
+        }
+        else if (currentChar >= 'a' && currentChar <= 'z'){
+                newMessage = newMessage + (char)((currentChar - 97 + iKey)%26+97);
+            }
+         else{
+            newMessage = newMessage + currentChar;
+         }
+    }
+        return newMessage;
     }
 
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String newMessage = "";
+        for (int i = 0; i < message.length() - 1; i++){
+            char currentChar = message.charAt(i);
+            char iKey = (char)(key.charAt(i) - 65);
+            if (iKey > 26){
+            iKey = (char)(iKey % 26);
+        }
+   
+        if (currentChar >= ('A'+ iKey) && currentChar <= 'Z'){
+                newMessage = newMessage + (char)(currentChar - iKey);
+        }
+        else if (currentChar >= ('a'+ iKey) && currentChar <= 'z'){
+                newMessage = newMessage + (char)(currentChar - iKey);
+            }
+        else if (currentChar >= 'a' && currentChar <= ('a'+ iKey)){
+            newMessage = newMessage + (char)((currentChar - 71 - iKey)%26+97);
+        }
+        else if (currentChar >= 'A' && currentChar <= ('A'+ iKey)){
+            newMessage = newMessage + (char)((currentChar - 39 - iKey)%26+65);
+        }
+         else{
+            newMessage = newMessage + currentChar;
+         }
+        
+    }
+        return newMessage;
     }
 
 
